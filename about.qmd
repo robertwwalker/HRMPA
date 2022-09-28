@@ -1,0 +1,26 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/PieRatio
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: Github
+      href: https://github.com/robertwwalker/ChoiceAndForecasting
+---
+
+## Solutions Sets
+
+The first half of the [Choice and Forecasting](https://rww.quarto.pub/models-of-choice-and-forecasting/) is built around [The Handbook of Regression Modeling in People Analytics: With Examples in R, Python, and Julia](https://peopleanalytics-regression-book.org/index.html) by Keith McNulty [Global Director of Talent Sciences at McKinsey and Company] that covers models for discrete data types [binary, ordered, nominal choices, counts of events, and survival/duration analysis].  
+
+This website provides chapter-by-chapter solutions to the text exercises.
+
+## Instructor
+
+**Robert W. Walker** is Associate Professor of Quantitative Methods in the Atkinson Graduate School of Management at Willamette University. He earned a Ph. D. in political science from the University of Rochester in 2005 and has previously held teaching positions at Dartmouth College, Rice University, Texas A&M University, and Washington University in Saint Louis. His current research develops and applies semi-Markov processes to time-series, cross-section data in international relations and international/comparative political economy. He teaches courses in quantitative methods/applied statistics and microeconomic strategy and previously taught four iterations in the U. S. National Science Foundation funded Empirical Implications of Theoretical Models sequence at Washington University in Saint Louis.  His work with Curt Signorino and Muhammet Bas was awarded the Miller Prize for the best article in Political Analysis in 2009.
