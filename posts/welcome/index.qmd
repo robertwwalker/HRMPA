@@ -1,0 +1,8 @@
+---
+title: "HRMPA Solutions"
+author: "Robert W. Walker"
+date: "2022-09-28"
+categories: [news]
+---
+
+The solutions are organized by Chapter as posts.

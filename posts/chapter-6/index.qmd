@@ -1,0 +1,90 @@
+---
+title: "Chapter 6"
+author: "Robert W. Walker"
+date: "2022-09-28"
+categories: [news]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, comment=NA, prompt=FALSE, fig.height=6, fig.width=6.5, fig.retina = 3, dev = 'svg', dev.args = list(bg = "transparent"))
+options(scipen=7)
+```
+
+## 6.5.2 Data exercises
+
+Use the same `health_insurance` data set from this chapter to answer these questions.
+
+```{r}
+url <- "http://peopleanalytics-regression-book.org/data/health_insurance.csv"
+health_insurance <- read.csv(url)
+```
+
+
+1. Complete the full stratified approach to modeling the three product choices that was started in Section 6.2. Calculate the coefficients, odds ratios and p-values in each case.
+
+```{r}
+library(fastDummies)
+health_insurance <- fastDummies::dummy_cols(health_insurance, "product")
+B_model <- glm(
+  formula = product_B ~ age + gender + household + 
+    position_level + absent, 
+  data = health_insurance, 
+  family = "binomial"
+)
+# summary
+summary(B_model)
+exp(summary(B_model)$coefficients[,1])
+C_model <- glm(
+  formula = product_C ~ age + gender + household + 
+    position_level + absent, 
+  data = health_insurance, 
+  family = "binomial"
+)
+# summary
+summary(C_model)
+exp(summary(C_model)$coefficients[,1])
+```
+
+
+2. Carefully write down your interpretation of the odds ratios from the previous question.
+
+*The relative odds of B increase by 6.4% for each additional year of age.  The relative odds of B decrease by almost 90% for males.  The relative odds of B increase by 110% for Non-binary subjects.  The relative odds of B decrease by 63% for each member of a household.  The relative odds of B decrease by 25% for each position level and the relative odds of B increase by just under one percent for each day absent.*
+
+*The relative odds of C increase by 11.8% for each additional year of age.  The relative odds of C increase by over 200% for males.  The relative odds of C decrease by 19% for Non-binary subjects.  The relative odds of C increase by 79% for each member of a household.  The relative odds of C decrease by 4% for each position level and the relative odds of C decrease by 0.006 percent for each day absent.*
+
+3. Run a multinomial logistic regression model on the product outcome using Product B as reference. Calculate the coefficients, ratios and p-values in each case.
+
+```{r}
+library(nnet)
+health_insurance$product <- relevel(as.factor(health_insurance$product), ref="B")
+mod.MNL <- nnet::multinom(product ~ age+household+position_level+gender+absent, data=health_insurance)
+summary(mod.MNL)
+# calculate z-statistics of coefficients
+z_stats <- summary(mod.MNL)$coefficients/
+  summary(mod.MNL)$standard.errors
+z_stats
+# convert to p-values
+p_values <- (1 - pnorm(abs(z_stats)))*2
+# display p-values in transposed data frame
+data.frame(t(p_values))
+odds_ratios <- exp(summary(mod.MNL)$coefficients)
+data.frame(t(odds_ratios))
+```
+
+
+4. Verify that the coefficients for Product C against reference Product B matches those calculated in Section 6.3.3.
+
+*They do.*
+
+5. Carefully write down your interpretation of the odds ratios calculated in the previous question.
+
+*For each unit of age, the relative odds of A decrease by 22% and the relative odds of C increase by 2.6%.  For each member of the household, the relative odds of A increase by 163% and the relative odds of C increase by 223%.  For each unit of position level, the relative odds of A increase by 51.5% and increase for C by 22.4%.  Males have relative odds 983% higher for A and 1093% higher for C.  Non-binary has 22.4% lower relative odds for A and 78.2% lower relative odds for C.  Each day of absence decreases relative odds of A by 1.2% and C by .84%.*
+
+6. Use the process described in Section 6.4.1 to simplify the multinomial model in Question 3.
+
+```{r}
+mod.MNL <- nnet::multinom(product ~ age+household+position_level+gender, data=health_insurance)
+summary(mod.MNL)
+```
+*Dropping `absent` is justified following this procedure as the text demonstrates.  Next would be position level or gender and neither are justified.*

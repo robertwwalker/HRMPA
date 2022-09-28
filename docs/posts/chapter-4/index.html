@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robert W. Walker">
+<meta name="dcterms.date" content="2022-09-28">
+
+<title>Solutions for HRMPA - Chapter 4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Solutions for HRMPA - Chapter 4">
+<meta name="twitter:description" content="Load the sociological_data data set via the peopleanalyticsdata package or download it from the internet.">
+<meta name="twitter:creator" content="@PieRatio">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Solutions for HRMPA</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/robertwwalker/HRMPA"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PieRatio"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Chapter 4</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">news</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert W. Walker </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 28, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="data-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="data-exercises">4.7.2 Data exercises</h2>
+<p>Load the <code>sociological_data</code> data set via the <code>peopleanalyticsdata</code> package or download it from the internet. This data represents a sample of information obtained from individuals who participated in a global research study and contains the following fields:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse); <span class="fu">library</span>(magrittr); <span class="fu">library</span>(skimr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>soc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://peopleanalytics-regression-book.org/data/sociological_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>annual_income_ppp: The annual income of the individual in PPP adjusted US dollars</li>
+<li>average_wk_hrs: The average number of hours per week worked by the individual</li>
+<li>education_months: The total number of months spent by the individual in formal primary, secondary and tertiary education</li>
+<li>region: The region of the world where the individual lives</li>
+<li>job_type: Whether the individual works in a skilled or unskilled profession</li>
+<li>gender: The gender of the individual</li>
+<li>family_size: The size of the individual’s family of dependents</li>
+<li>work_distance: The distance between the individual’s residence and workplace in kilometers</li>
+<li>languages: The number of languages spoken fluently by the individual</li>
+</ul>
+<p>Conduct some exploratory data analysis on this data set. Including:</p>
+<ol type="1">
+<li>Identify the extent to which missing data is an issue.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(soc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> annual_income_ppp average_wk_hrs  education_months    region         
+ Min.   :  2863    Min.   :30.00   Min.   : 40.0    Length:2618       
+ 1st Qu.: 62653    1st Qu.:39.00   1st Qu.:157.0    Class :character  
+ Median : 82140    Median :43.00   Median :184.0    Mode  :character  
+ Mean   : 76040    Mean   :44.19   Mean   :179.3                      
+ 3rd Qu.: 90112    3rd Qu.:50.00   3rd Qu.:207.0                      
+ Max.   :119564    Max.   :55.00   Max.   :280.0                      
+ NA's   :10        NA's   :34      NA's   :19                         
+   job_type            gender           family_size    work_distance    
+ Length:2618        Length:2618        Min.   : 0.00   Min.   :  0.000  
+ Class :character   Class :character   1st Qu.: 2.00   1st Qu.:  0.000  
+ Mode  :character   Mode  :character   Median : 3.00   Median :  0.000  
+                                       Mean   : 3.26   Mean   :  0.985  
+                                       3rd Qu.: 4.00   3rd Qu.:  1.000  
+                                       Max.   :10.00   Max.   :105.000  
+                                       NA's   :191     NA's   :412      
+   languages    
+ Min.   :1.000  
+ 1st Qu.:1.000  
+ Median :1.000  
+ Mean   :1.018  
+ 3rd Qu.:1.000  
+ Max.   :5.000  
+ NA's   :412    </code></pre>
+</div>
+</div>
+<p>The answer very much depends on the variable under examination. <code>languages</code> and <code>work_distance</code> are missing 15.737204% of the data. That is quite a bit. The good news, such that it is, is that it is the same 412 observations that are missing both. How much an issue is it? One way to examine this would be to estimate the model with those data and without. There are also 119 observations without <code>family_size</code>, of those 41 are missing. This means that 490 are missing via patterns in these three variables; that’s 0.1871658</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>soc_data <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">tabyl</span>(languages, work_distance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> languages    0   1 10 105 11 12 13 14 15 16 18 19  2 20 21  3  4  5  6  7 8 9
+         1 1582 343  8   0  5  3  2  0  0  0  0  0 92  0  0 58 38 20 12 11 5 1
+         2    0   0  0   0  0  0  0  5  6  3  1  2  0  2  2  0  0  0  0  0 0 0
+         4    0   0  0   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 0 0
+         5    0   0  0   1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 0 0
+        NA    0   0  0   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 0 0
+ 91 93 94 96 NA_
+  0  0  0  0   0
+  0  0  0  0   0
+  1  0  0  0   0
+  0  1  1  1   0
+  0  0  0  0 412</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>soc_data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">is.na</span>(languages) <span class="sc">&amp;</span> <span class="fu">is.na</span>(work_distance)) <span class="sc">%&gt;%</span> <span class="fu">skim</span>(family_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">Piped data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">412</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">family_size</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">2.79</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">▇▇▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">gg_miss_var</span>(soc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.svg" class="img-fluid" width="624"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Determine if the data types are appropriate for analysis.</li>
+</ol>
+<p><em>To be honest, I am not entirely sure what this means. Yes, we can analyse them in the current form.</em></p>
+<ol start="3" type="1">
+<li>Using a correlation matrix, pairplot or alternative method, identify whether collinearity is present in the data.</li>
+</ol>
+<p><code>region</code> is categorical with too many categories so it has to be dropped from plots. <code>work_distance</code> and <code>languages</code> are very highly correlated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>soc_data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>region) <span class="sc">%&gt;%</span> GGally<span class="sc">::</span><span class="fu">ggpairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.svg" class="img-fluid" width="624"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Identify and discuss anything else interesting that you see in the data.</li>
+</ol>
+<p><code>work_distance</code> is messy and highly correlated with <code>languages</code>.</p>
+<p>Prepare to build a linear regression model to explain the variation in annual_income_ppp using the other data in the data set.</p>
+<ol start="5" type="1">
+<li>Are there any fields which you believe should not be included in the model? If so, why?</li>
+</ol>
+<p><em>I think there are principled reasons to ignore <code>work_distance</code> and <code>languages</code> as they have so much missing data. Not exactly sure why <code>family_size</code> would be relevant but that can be included and excluded.</em></p>
+<ol start="6" type="1">
+<li>Would you consider imputing missing data for some or all fields where it is an issue? If so, what might be some simple ways to impute the missing data?</li>
+</ol>
+<p><em>I would not but largely because I am not sure what would necessarily predict work distance, languages, and family size. Were I to impute it, I prefer multiple imputation to represent the full data correlation structure in the imputation process.</em></p>
+<ol start="7" type="1">
+<li>Which variables are categorical? Convert these variables to dummy variables using a convenient function or using your own approach.</li>
+</ol>
+<p>The <code>fastDummies</code> package is amazing for this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(soc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> annual_income_ppp average_wk_hrs  education_months    region         
+ Min.   :  2863    Min.   :30.00   Min.   : 40.0    Length:2618       
+ 1st Qu.: 62653    1st Qu.:39.00   1st Qu.:157.0    Class :character  
+ Median : 82140    Median :43.00   Median :184.0    Mode  :character  
+ Mean   : 76040    Mean   :44.19   Mean   :179.3                      
+ 3rd Qu.: 90112    3rd Qu.:50.00   3rd Qu.:207.0                      
+ Max.   :119564    Max.   :55.00   Max.   :280.0                      
+ NA's   :10        NA's   :34      NA's   :19                         
+   job_type            gender           family_size    work_distance    
+ Length:2618        Length:2618        Min.   : 0.00   Min.   :  0.000  
+ Class :character   Class :character   1st Qu.: 2.00   1st Qu.:  0.000  
+ Mode  :character   Mode  :character   Median : 3.00   Median :  0.000  
+                                       Mean   : 3.26   Mean   :  0.985  
+                                       3rd Qu.: 4.00   3rd Qu.:  1.000  
+                                       Max.   :10.00   Max.   :105.000  
+                                       NA's   :191     NA's   :412      
+   languages    
+ Min.   :1.000  
+ 1st Qu.:1.000  
+ Median :1.000  
+ Mean   :1.018  
+ 3rd Qu.:1.000  
+ Max.   :5.000  
+ NA's   :412    </code></pre>
+</div>
+</div>
+<p><code>region</code>, <code>job_type</code>, and <code>gender</code> need such treatment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>soc_data.dum <span class="ot">&lt;-</span> soc_data <span class="sc">%&gt;%</span> fastDummies<span class="sc">::</span><span class="fu">dummy_columns</span>(., <span class="at">select_columns =</span> <span class="fu">c</span>(<span class="st">"region"</span>,<span class="st">"job_type"</span>,<span class="st">"gender"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run and interpret the model. For convenience, and to avoid long formula strings, you can use the formula notation <code>annual_income_ppp ~ .</code> which means ‘regress annual_income against everything else’. You can also remove fields this way, for example <code>annual_income_ppp ~ . - family_size</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Mod1 <span class="ot">&lt;-</span> soc_data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(work_distance, languages, family_size)) <span class="sc">%&gt;%</span> <span class="fu">lm</span>(annual_income_ppp <span class="sc">~</span> ., <span class="at">data=</span>.)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = annual_income_ppp ~ ., data = .)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-66558  -5076     32   4886  34054 
+
+Coefficients:
+                                        Estimate Std. Error t value   Pr(&gt;|t|)
+(Intercept)                            61013.833   3547.587  17.199    &lt; 2e-16
+average_wk_hrs                           -94.381     49.614  -1.902   0.057245
+education_months                         135.854      8.919  15.232    &lt; 2e-16
+regionCentral Asia                     -9950.611   2219.350  -4.484 0.00000767
+regionEastern Asia                       -11.119   2306.359  -0.005   0.996154
+regionEastern Europe                   -8868.991   1957.127  -4.532 0.00000612
+regionLatin America and the Caribbean   1520.957   1974.732   0.770   0.441247
+regionMelanesia                        -4341.571   2290.646  -1.895   0.058160
+regionMicronesia                       -9862.966   2590.009  -3.808   0.000143
+regionNorthern Africa                   -571.361   2198.879  -0.260   0.795007
+regionNorthern America                 14003.282   2999.688   4.668 0.00000320
+regionNorthern Europe                   -295.495   1863.336  -0.159   0.874010
+regionPolynesia                        -1463.552   2539.825  -0.576   0.564503
+regionSouth-eastern Asia               -2932.501   2106.504  -1.392   0.164009
+regionSouthern Asia                    -3410.363   2195.464  -1.553   0.120460
+regionSouthern Europe                   4555.134   1903.801   2.393   0.016799
+regionSub-Saharan Africa              -20719.828   2066.605 -10.026    &lt; 2e-16
+regionWestern Asia                      2658.151   1995.651   1.332   0.182989
+regionWestern Europe                    6625.710   1922.203   3.447   0.000576
+job_typeUnskilled                      -8074.631    803.987 -10.043    &lt; 2e-16
+genderM                                 9715.197    665.656  14.595    &lt; 2e-16
+                                         
+(Intercept)                           ***
+average_wk_hrs                        .  
+education_months                      ***
+regionCentral Asia                    ***
+regionEastern Asia                       
+regionEastern Europe                  ***
+regionLatin America and the Caribbean    
+regionMelanesia                       .  
+regionMicronesia                      ***
+regionNorthern Africa                    
+regionNorthern America                ***
+regionNorthern Europe                    
+regionPolynesia                          
+regionSouth-eastern Asia                 
+regionSouthern Asia                      
+regionSouthern Europe                 *  
+regionSub-Saharan Africa              ***
+regionWestern Asia                       
+regionWestern Europe                  ***
+job_typeUnskilled                     ***
+genderM                               ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9407 on 2539 degrees of freedom
+  (58 observations deleted due to missingness)
+Multiple R-squared:  0.7962,    Adjusted R-squared:  0.7946 
+F-statistic: 495.8 on 20 and 2539 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Determine what variables are significant predictors of annual income and what is the effect of each on the outcome.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>soc_data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(work_distance, languages, family_size)) <span class="sc">%&gt;%</span> <span class="fu">lm</span>(annual_income_ppp <span class="sc">~</span> ., <span class="at">data=</span>.) <span class="sc">%&gt;%</span> summary <span class="sc">%$%</span> coefficients <span class="sc">%&gt;%</span> data.frame <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">Pr...t..</span><span class="st">`</span> <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            Estimate  Std..Error    t.value     Pr...t..
+(Intercept)               61013.8327 3547.587273  17.198684 8.550317e-63
+education_months            135.8542    8.918884  15.232193 3.346444e-50
+regionCentral Asia        -9950.6108 2219.350223  -4.483569 7.666478e-06
+regionEastern Europe      -8868.9906 1957.126882  -4.531638 6.123784e-06
+regionMicronesia          -9862.9659 2590.008578  -3.808082 1.433663e-04
+regionNorthern America    14003.2817 2999.687867   4.668246 3.195797e-06
+regionSouthern Europe      4555.1337 1903.800748   2.392653 1.679935e-02
+regionSub-Saharan Africa -20719.8283 2066.605062 -10.026022 3.148593e-23
+regionWestern Europe       6625.7095 1922.203143   3.446935 5.762064e-04
+job_typeUnskilled         -8074.6311  803.987070 -10.043235 2.662334e-23
+genderM                    9715.1966  665.656089  14.594919 2.169990e-46</code></pre>
+</div>
+</div>
+<p><strong>Months of education, region, job type, and gender are predictors of annual income. Each month of education begets about 136 dollars, unskilled labor is lower by 8075 dollars than skilled labor, and Males have annual incomes about 9715 dollars higher. A number of regions have higher and lower average annual incomes, also.</strong></p>
+<ol start="9" type="1">
+<li>Determine the overall fit of the model.</li>
+</ol>
+<p><em>The model accounts for almost 80 percent of the variation in annual incomes and the model <span class="math inline">\(F\)</span> statistic is enormous.</em></p>
+<ol start="10" type="1">
+<li>Do some simple analysis on the residuals of the model to determine if the model is safe to interpret.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gvlma<span class="sc">::</span><span class="fu">gvlma</span>(Mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = annual_income_ppp ~ ., data = .)
+
+Coefficients:
+                          (Intercept)                         average_wk_hrs  
+                             61013.83                                 -94.38  
+                     education_months                     regionCentral Asia  
+                               135.85                               -9950.61  
+                   regionEastern Asia                   regionEastern Europe  
+                               -11.12                               -8868.99  
+regionLatin America and the Caribbean                        regionMelanesia  
+                              1520.96                               -4341.57  
+                     regionMicronesia                  regionNorthern Africa  
+                             -9862.97                                -571.36  
+               regionNorthern America                  regionNorthern Europe  
+                             14003.28                                -295.49  
+                      regionPolynesia               regionSouth-eastern Asia  
+                             -1463.55                               -2932.50  
+                  regionSouthern Asia                  regionSouthern Europe  
+                             -3410.36                                4555.13  
+             regionSub-Saharan Africa                     regionWestern Asia  
+                            -20719.83                                2658.15  
+                 regionWestern Europe                      job_typeUnskilled  
+                              6625.71                               -8074.63  
+                              genderM  
+                              9715.20  
+
+
+ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+Level of Significance =  0.05 
+
+Call:
+ gvlma::gvlma(x = Mod1) 
+
+                      Value    p-value                   Decision
+Global Stat        517.2979 0.00000000 Assumptions NOT satisfied!
+Skewness             3.9341 0.04731624 Assumptions NOT satisfied!
+Kurtosis           497.9156 0.00000000 Assumptions NOT satisfied!
+Link Function       15.1844 0.00009751 Assumptions NOT satisfied!
+Heteroscedasticity   0.2639 0.60748142    Assumptions acceptable.</code></pre>
+</div>
+</div>
+<p><em>Probably not. The middle 50 percent of residuals are reasonably well balanced but they have a very long left tail in addition to failing the diagnostics above.</em></p>
+<ol start="11" type="1">
+<li>Experiment with improving the model fit through possible interaction terms or non-linear extensions.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Mod2 <span class="ot">&lt;-</span> soc_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ln_income =</span> <span class="fu">log</span>(annual_income_ppp)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(work_distance, languages, family_size,annual_income_ppp))  <span class="sc">%&gt;%</span> <span class="fu">lm</span>(ln_income <span class="sc">~</span> ., <span class="at">data=</span>.)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ln_income ~ ., data = .)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.11453 -0.06136  0.00394  0.07564  0.59898 
+
+Coefficients:
+                                        Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                           10.9156109  0.0706493 154.504  &lt; 2e-16
+average_wk_hrs                        -0.0009693  0.0009881  -0.981  0.32669
+education_months                       0.0017640  0.0001776   9.932  &lt; 2e-16
+regionCentral Asia                    -0.0984659  0.0441978  -2.228  0.02598
+regionEastern Asia                     0.0088410  0.0459306   0.192  0.84738
+regionEastern Europe                  -0.0797522  0.0389757  -2.046  0.04084
+regionLatin America and the Caribbean  0.0379392  0.0393263   0.965  0.33477
+regionMelanesia                       -0.0067090  0.0456176  -0.147  0.88309
+regionMicronesia                      -0.0895268  0.0515794  -1.736  0.08274
+regionNorthern Africa                  0.0145632  0.0437901   0.333  0.73949
+regionNorthern America                 0.1609234  0.0597380   2.694  0.00711
+regionNorthern Europe                  0.0063751  0.0371079   0.172  0.86361
+regionPolynesia                        0.0045840  0.0505800   0.091  0.92779
+regionSouth-eastern Asia              -0.0141714  0.0419505  -0.338  0.73553
+regionSouthern Asia                   -0.0089686  0.0437221  -0.205  0.83749
+regionSouthern Europe                  0.0698175  0.0379137   1.841  0.06567
+regionSub-Saharan Africa              -0.3306967  0.0411559  -8.035 1.42e-15
+regionWestern Asia                     0.0571853  0.0397429   1.439  0.15031
+regionWestern Europe                   0.0833153  0.0382802   2.176  0.02961
+job_typeUnskilled                     -0.0846780  0.0160112  -5.289 1.34e-07
+genderM                                0.1962831  0.0132564  14.807  &lt; 2e-16
+                                         
+(Intercept)                           ***
+average_wk_hrs                           
+education_months                      ***
+regionCentral Asia                    *  
+regionEastern Asia                       
+regionEastern Europe                  *  
+regionLatin America and the Caribbean    
+regionMelanesia                          
+regionMicronesia                      .  
+regionNorthern Africa                    
+regionNorthern America                ** 
+regionNorthern Europe                    
+regionPolynesia                          
+regionSouth-eastern Asia                 
+regionSouthern Asia                      
+regionSouthern Europe                 .  
+regionSub-Saharan Africa              ***
+regionWestern Asia                       
+regionWestern Europe                  *  
+job_typeUnskilled                     ***
+genderM                               ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1873 on 2539 degrees of freedom
+  (58 observations deleted due to missingness)
+Multiple R-squared:  0.7041,    Adjusted R-squared:  0.7018 
+F-statistic: 302.1 on 20 and 2539 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gvlma<span class="sc">::</span><span class="fu">gvlma</span>(Mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ln_income ~ ., data = .)
+
+Coefficients:
+                          (Intercept)                         average_wk_hrs  
+                           10.9156109                             -0.0009693  
+                     education_months                     regionCentral Asia  
+                            0.0017640                             -0.0984659  
+                   regionEastern Asia                   regionEastern Europe  
+                            0.0088410                             -0.0797522  
+regionLatin America and the Caribbean                        regionMelanesia  
+                            0.0379392                             -0.0067090  
+                     regionMicronesia                  regionNorthern Africa  
+                           -0.0895268                              0.0145632  
+               regionNorthern America                  regionNorthern Europe  
+                            0.1609234                              0.0063751  
+                      regionPolynesia               regionSouth-eastern Asia  
+                            0.0045840                             -0.0141714  
+                  regionSouthern Asia                  regionSouthern Europe  
+                           -0.0089686                              0.0698175  
+             regionSub-Saharan Africa                     regionWestern Asia  
+                           -0.3306967                              0.0571853  
+                 regionWestern Europe                      job_typeUnskilled  
+                            0.0833153                             -0.0846780  
+                              genderM  
+                            0.1962831  
+
+
+ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+Level of Significance =  0.05 
+
+Call:
+ gvlma::gvlma(x = Mod2) 
+
+                        Value  p-value                   Decision
+Global Stat        143804.115 0.000000 Assumptions NOT satisfied!
+Skewness             3716.416 0.000000 Assumptions NOT satisfied!
+Kurtosis           140075.937 0.000000 Assumptions NOT satisfied!
+Link Function           2.550 0.110312    Assumptions acceptable.
+Heteroscedasticity      9.212 0.002404 Assumptions NOT satisfied!</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Mod2 <span class="ot">&lt;-</span> soc_data <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(work_distance, languages, family_size))  <span class="sc">%&gt;%</span> <span class="fu">lm</span>(annual_income_ppp <span class="sc">~</span> region <span class="sc">+</span> job_type<span class="sc">*</span>average_wk_hrs<span class="sc">+</span>education_months<span class="sc">+</span>region<span class="sc">+</span>gender<span class="sc">*</span>education_months, <span class="at">data=</span>.)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = annual_income_ppp ~ region + job_type * average_wk_hrs + 
+    education_months + region + gender * education_months, data = .)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-65530  -5157      3   5146  33350 
+
+Coefficients:
+                                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                            54829.60    4376.12  12.529  &lt; 2e-16 ***
+regionCentral Asia                     -3609.73    2274.42  -1.587 0.112616    
+regionEastern Asia                      4834.25    2346.28   2.060 0.039464 *  
+regionEastern Europe                   -4394.43    1977.73  -2.222 0.026374 *  
+regionLatin America and the Caribbean   6933.59    2030.08   3.415 0.000647 ***
+regionMelanesia                         1897.75    2351.66   0.807 0.419752    
+regionMicronesia                       -3031.98    2685.54  -1.129 0.259005    
+regionNorthern Africa                   4816.64    2245.49   2.145 0.032046 *  
+regionNorthern America                 16160.99    2956.92   5.465 5.07e-08 ***
+regionNorthern Europe                   1849.26    1843.39   1.003 0.315869    
+regionPolynesia                         3128.26    2567.06   1.219 0.223103    
+regionSouth-eastern Asia                2998.16    2149.16   1.395 0.163126    
+regionSouthern Asia                     3517.06    2247.88   1.565 0.117798    
+regionSouthern Europe                   8416.08    1913.55   4.398 1.14e-05 ***
+regionSub-Saharan Africa              -14561.47    2112.30  -6.894 6.84e-12 ***
+regionWestern Asia                      8247.65    2063.91   3.996 6.62e-05 ***
+regionWestern Europe                    9742.39    1919.92   5.074 4.17e-07 ***
+job_typeUnskilled                       5374.35    4251.07   1.264 0.206262    
+average_wk_hrs                           188.67      88.89   2.123 0.033883 *  
+education_months                          44.78      12.15   3.685 0.000233 ***
+genderM                               -18683.40    2797.28  -6.679 2.94e-11 ***
+job_typeUnskilled:average_wk_hrs        -305.25     101.63  -3.004 0.002695 ** 
+education_months:genderM                 179.74      17.29  10.398  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 9190 on 2537 degrees of freedom
+  (58 observations deleted due to missingness)
+Multiple R-squared:  0.8056,    Adjusted R-squared:  0.8039 
+F-statistic:   478 on 22 and 2537 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gvlma<span class="sc">::</span><span class="fu">gvlma</span>(Mod2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = annual_income_ppp ~ region + job_type * average_wk_hrs + 
+    education_months + region + gender * education_months, data = .)
+
+Coefficients:
+                          (Intercept)                     regionCentral Asia  
+                             54829.60                               -3609.73  
+                   regionEastern Asia                   regionEastern Europe  
+                              4834.25                               -4394.43  
+regionLatin America and the Caribbean                        regionMelanesia  
+                              6933.59                                1897.75  
+                     regionMicronesia                  regionNorthern Africa  
+                             -3031.98                                4816.64  
+               regionNorthern America                  regionNorthern Europe  
+                             16160.99                                1849.26  
+                      regionPolynesia               regionSouth-eastern Asia  
+                              3128.26                                2998.16  
+                  regionSouthern Asia                  regionSouthern Europe  
+                              3517.06                                8416.08  
+             regionSub-Saharan Africa                     regionWestern Asia  
+                            -14561.47                                8247.65  
+                 regionWestern Europe                      job_typeUnskilled  
+                              9742.39                                5374.35  
+                       average_wk_hrs                       education_months  
+                               188.67                                  44.78  
+                              genderM       job_typeUnskilled:average_wk_hrs  
+                            -18683.40                                -305.25  
+             education_months:genderM  
+                               179.74  
+
+
+ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+Level of Significance =  0.05 
+
+Call:
+ gvlma::gvlma(x = Mod2) 
+
+                     Value     p-value                   Decision
+Global Stat        471.098 0.000000000 Assumptions NOT satisfied!
+Skewness            11.605 0.000657878 Assumptions NOT satisfied!
+Kurtosis           435.190 0.000000000 Assumptions NOT satisfied!
+Link Function       24.150 0.000000891 Assumptions NOT satisfied!
+Heteroscedasticity   0.153 0.695654693    Assumptions acceptable.</code></pre>
+</div>
+</div>
+<p><em>Maybe I am missing something but I cannot really make this work.</em></p>
+<ol start="12" type="1">
+<li>Comment on your results. Did anything in the results surprise you? If so, what might be possible explanations for this.</li>
+</ol>
+<p><em>Originally, the negative sign on Males but, when thought of in the context of the interaction term for education_months, it does not take all that many months to make up that difference. That the education premium as so large for males is discouraging but not surprising.</em></p>
+<ol start="13" type="1">
+<li>Explain why you would or would not be comfortable using a model like this in a predictive setting—for example to help employers determine the right pay for employees.</li>
+</ol>
+<p><em>I would not. The reason largely stems from the need for an actual job description which, at least to me, is a far more important predictor of the salary/pay band than simple skilled/unskilled and education.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

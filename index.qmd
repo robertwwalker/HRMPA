@@ -1,5 +1,5 @@
 ---
-title: "Solutions Sets for HRMPA"
+title: "HRMPA Chapter Exercise Solutions"
 listing:
   contents: posts
   sort: "date desc"

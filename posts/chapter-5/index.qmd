@@ -1,0 +1,149 @@
+---
+title: "Chapter 5"
+author: "Robert W. Walker"
+date: "2022-09-28"
+categories: [news]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, comment=NA, prompt=FALSE, fig.height=6, fig.width=6.5, fig.retina = 3, dev = 'svg', dev.args = list(bg = "transparent"))
+options(scipen=7)
+```
+
+## 4.7.2 Data exercises
+
+Load the `sociological_data` data set via the `peopleanalyticsdata` package or download it from the internet. This data represents a sample of information obtained from individuals who participated in a global research study and contains the following fields:
+
+```{r}
+library(tidyverse); library(magrittr); library(skimr)
+soc_data <- read.csv("http://peopleanalytics-regression-book.org/data/sociological_data.csv")
+```
+
+- annual_income_ppp: The annual income of the individual in PPP adjusted US dollars
+- average_wk_hrs: The average number of hours per week worked by the individual
+- education_months: The total number of months spent by the individual in formal primary, secondary and tertiary education
+- region: The region of the world where the individual lives
+- job_type: Whether the individual works in a skilled or unskilled profession
+- gender: The gender of the individual
+- family_size: The size of the individual’s family of dependents
+- work_distance: The distance between the individual’s residence and workplace in kilometers
+- languages: The number of languages spoken fluently by the individual
+
+Conduct some exploratory data analysis on this data set. Including:
+
+1. Identify the extent to which missing data is an issue.
+
+```{r}
+summary(soc_data)
+```
+The answer very much depends on the variable under examination.  `languages` and `work_distance` are missing `r (412/2618)*100`% of the data.  That is quite a bit.  The good news, such that it is, is that it is the same 412 observations that are missing both.  How much an issue is it?  One way to examine this would be to estimate the model with those data and without.  There are also 119 observations without `family_size`, of those 41 are missing.  This means that `r 119-41+412` are missing via patterns in these three variables; that's `r (119-41+412)/2618`
+
+```{r}
+soc_data %>% janitor::tabyl(languages, work_distance)
+soc_data %>% dplyr::filter(is.na(languages) & is.na(work_distance)) %>% skim(family_size)
+```
+
+```{r}
+library(naniar)
+naniar::gg_miss_var(soc_data)
+```
+
+
+2. Determine if the data types are appropriate for analysis.
+
+*To be honest, I am not entirely sure what this means.  Yes, we can analyse them in the current form.*
+
+3. Using a correlation matrix, pairplot or alternative method, identify whether collinearity is present in the data.
+
+`region` is categorical with too many categories so it has to be dropped from plots. `work_distance` and `languages` are very highly correlated.
+
+```{r}
+soc_data %>% dplyr::select(-region) %>% GGally::ggpairs()
+```
+
+4. Identify and discuss anything else interesting that you see in the data.
+
+`work_distance` is messy and highly correlated with `languages`.
+
+Prepare to build a linear regression model to explain the variation in annual_income_ppp using the other data in the data set.
+
+5. Are there any fields which you believe should not be included in the model? If so, why?
+
+*I think there are principled reasons to ignore `work_distance` and `languages` as they have so much missing data.  Not exactly sure why `family_size` would be relevant but that can be included and excluded.*
+
+6. Would you consider imputing missing data for some or all fields where it is an issue? If so, what might be some simple ways to impute the missing data?
+
+*I would not but largely because I am not sure what would necessarily predict work distance, languages, and family size.  Were I to impute it, I prefer multiple imputation to represent the full data correlation structure in the imputation process.*
+
+7. Which variables are categorical? Convert these variables to dummy variables using a convenient function or using your own approach.
+
+The `fastDummies` package is amazing for this.
+
+```{r}
+summary(soc_data)
+```
+
+`region`, `job_type`, and `gender` need such treatment.
+
+```{r}
+library(fastDummies)
+soc_data.dum <- soc_data %>% fastDummies::dummy_columns(., select_columns = c("region","job_type","gender"))
+```
+
+
+Run and interpret the model. For convenience, and to avoid long formula strings, you can use the formula notation `annual_income_ppp ~ .` which means ‘regress annual_income against everything else’. You can also remove fields this way, for example `annual_income_ppp ~ . - family_size`.
+
+```{r}
+Mod1 <- soc_data %>% dplyr::select(-c(work_distance, languages, family_size)) %>% lm(annual_income_ppp ~ ., data=.)
+summary(Mod1)
+```
+
+
+8. Determine what variables are significant predictors of annual income and what is the effect of each on the outcome.
+
+```{r}
+soc_data %>% dplyr::select(-c(work_distance, languages, family_size)) %>% lm(annual_income_ppp ~ ., data=.) %>% summary %$% coefficients %>% data.frame %>% filter(`Pr...t..` < 0.05)
+```
+**Months of education, region, job type, and gender are predictors of annual income.  Each month of education begets about 136 dollars, unskilled labor is lower by 8075 dollars than skilled labor, and Males have annual incomes about 9715 dollars higher.  A number of regions have higher and lower average annual incomes, also.**
+
+
+9. Determine the overall fit of the model.
+
+*The model accounts for almost 80 percent of the variation in annual incomes and the model $F$ statistic is enormous.*
+
+10. Do some simple analysis on the residuals of the model to determine if the model is safe to interpret.
+
+```{r}
+gvlma::gvlma(Mod1)
+```
+
+*Probably not.  The middle 50 percent of residuals are reasonably well balanced but they have a very long left tail in addition to failing the diagnostics above.*
+
+11. Experiment with improving the model fit through possible interaction terms or non-linear extensions.
+
+```{r}
+Mod2 <- soc_data %>% mutate(ln_income = log(annual_income_ppp)) %>% dplyr::select(-c(work_distance, languages, family_size,annual_income_ppp))  %>% lm(ln_income ~ ., data=.)
+summary(Mod2)
+gvlma::gvlma(Mod2)
+```
+
+```{r}
+Mod2 <- soc_data %>%  dplyr::select(-c(work_distance, languages, family_size))  %>% lm(annual_income_ppp ~ region + job_type*average_wk_hrs+education_months+region+gender*education_months, data=.)
+summary(Mod2)
+```
+
+
+```{r}
+gvlma::gvlma(Mod2)
+```
+
+*Maybe I am missing something but I cannot really make this work.*
+
+12. Comment on your results. Did anything in the results surprise you? If so, what might be possible explanations for this.
+
+*Originally, the negative sign on Males but, when thought of in the context of the interaction term for education_months, it does not take all that many months to make up that difference.  That the education premium as so large for males is discouraging but not surprising.*
+
+13. Explain why you would or would not be comfortable using a model like this in a predictive setting—for example to help employers determine the right pay for employees.
+
+*I would not.  The reason largely stems from the need for an actual job description which, at least to me, is a far more important predictor of the salary/pay band than simple skilled/unskilled and education.*

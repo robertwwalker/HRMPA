@@ -1,0 +1,111 @@
+---
+title: "Chapter 3: HRMPA"
+author: "Robert W. Walker"
+date: "2022-09-28"
+categories: [news]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, comment=NA, prompt=FALSE, fig.height=6, fig.width=6.5, fig.retina = 3, dev = 'svg', dev.args = list(bg = "transparent"))
+options(scipen=7)
+```
+
+## 3.6.2 Data exercises
+
+For these exercises, load the `charity_donation` data set via the `peopleanalyticsdata` package, or download it from the internet. *This data set contains information on a sample of individuals who made donations to a nature charity.*
+
+```{r}
+library(tidyverse); library(magrittr)
+charity_data <- read.csv("http://peopleanalytics-regression-book.org/data/charity_donation.csv")
+```
+
+1. Calculate the mean `total_donations` from the data set.
+
+```{r}
+mean(charity_data$total_donations)
+charity_data$total_donations %>% mean
+```
+**The mean of `total_donations` is `r round(mean(charity_data$total_donations), 2)`.**
+
+2. Calculate the sample variance for `total_donations` and convert this to a population variance.
+
+```{r}
+# Sample variance
+var(charity_data$total_donations)
+# Population variance
+((length(charity_data$total_donations)-1)/length(charity_data$total_donations))*var(charity_data$total_donations)
+```
+**The sample variance for `total_donations` is `r var(charity_data$total_donations)` while the population variance is slightly smaller: `r ((length(charity_data$total_donations)-1)/length(charity_data$total_donations))*var(charity_data$total_donations)`.**
+
+3. Calculate the sample standard deviation for `total_donations` and verify that it is the same as the square root of the sample variance.
+
+```{r}
+sd(charity_data$total_donations)
+sd(charity_data$total_donations)==sqrt(var(charity_data$total_donations))
+```
+
+
+4. Calculate the sample correlation between `total_donations` and `time_donating`. By using an appropriate hypothesis test, determine if these two variables are independent in the overall population.
+
+```{r}
+cor.test(charity_data$total_donations, charity_data$time_donating)
+charity_data %$% cor.test(total_donations, time_donating)
+```
+**These two variables are quite unlikely to be independent in the population.  The correlation is 0.616 and, with 95% confidence, ranges from 0.55 to 0.68.  There is basically zero probability of finding a correlation that high by chance alone.**
+
+5. Calculate the mean and the standard error of the mean for the first 20 entries of `total_donations`.
+
+```{r}
+mean(charity_data$total_donations[1:20])
+sd(charity_data$total_donations[1:20])/sqrt(length(charity_data$total_donations[1:20]))
+```
+
+6. Calculate the mean and the standard error of the mean for the first 50 entries of `total_donations`. Verify that the standard error is less than in Exercise 5.
+
+```{r}
+mean(charity_data$total_donations[1:50])
+sd(charity_data$total_donations[1:50])/sqrt(length(charity_data$total_donations[1:50]))
+```
+
+**The standard error of the first 50 is 240.7 while the standard error of the first 20 is 315.1.  Verified.**
+
+7. By using an appropriate hypothesis test, determine if the mean age of those who made a recent donation is different from those who did not.
+
+```{r}
+t.test(age~recent_donation, data=charity_data)
+charity_data %>% t.test(age~recent_donation, data=.)
+```
+**The age of recent donors is between 16.5 and 24.5 years higher than those of non-recent donors with 95% confidence.  The probability that such a large difference would be observed by random chance if there was no difference is basically zero.**
+
+8. By using an appropriate hypothesis test, determine if there is a difference in whether or not a recent donation was made according to where people reside.
+
+```{r}
+chisq.test(charity_data$recent_donation, charity_data$reside)
+```
+
+**Both variables are categorical, this a chi-square test of independence is indicated.  The evidence suggests that likelihood of recent donations depends on where an individual resides.**
+
+For a bit of detail, I will deploy `janitor::tabyl`
+
+```{r}
+library(janitor)
+charity_data %>% tabyl(reside, recent_donation) %>% adorn_percentages("row")
+```
+
+9. **Extension**: By using an appropriate hypothesis test, determine if the age of those who have recently donated is at least 10 years older than those who have not recently donated in the population.
+
+**Yes.  This is fairly clear from the evidence in question 7.  Though more formally, as an hypothesis test, we should use evidence only in one tail.  It is worth noting that the first group [0] is smaller, so we really mean a difference less than -10 and the evidence suggests that this is true as it is very unlikely to have occurred by chance alone.**
+
+```{r}
+charity_data %>% t.test(age~recent_donation, data=., alt="l", mu=-10)
+```
+
+
+10. **Extension**: By using an appropriate hypothesis test, determine if the average donation amount is at least 10 dollars higher for those who recently donated versus those who did not. Retest for 20 dollars higher.
+
+
+```{r}
+charity_data %>% mutate(avg_donation = total_donations/n_donations) %>% t.test(avg_donation~recent_donation, data=., mu=-10, alt="l")
+charity_data %>% mutate(avg_donation = total_donations/n_donations) %>% t.test(avg_donation~recent_donation, data=., mu=-20, alt="l")
+```
+**It is at least 10 dollars higher with 95% confidence but it is not quite at least 20 dollars higher with 95% confidence.  In the former case, the probability of such a large difference by random chance is 0.007 while in the latter case, it is 0.06.**

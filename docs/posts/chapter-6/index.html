@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robert W. Walker">
+<meta name="dcterms.date" content="2022-09-28">
+
+<title>Solutions for HRMPA - Chapter 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Solutions for HRMPA - Chapter 6">
+<meta name="twitter:description" content="Use the same health_insurance data set from this chapter to answer these questions.">
+<meta name="twitter:creator" content="@PieRatio">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Solutions for HRMPA</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/robertwwalker/HRMPA"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PieRatio"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Chapter 6</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">news</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert W. Walker </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 28, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="data-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="data-exercises">6.5.2 Data exercises</h2>
+<p>Use the same <code>health_insurance</code> data set from this chapter to answer these questions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://peopleanalytics-regression-book.org/data/health_insurance.csv"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>health_insurance <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>Complete the full stratified approach to modeling the three product choices that was started in Section 6.2. Calculate the coefficients, odds ratios and p-values in each case.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>health_insurance <span class="ot">&lt;-</span> fastDummies<span class="sc">::</span><span class="fu">dummy_cols</span>(health_insurance, <span class="st">"product"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>B_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> product_B <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> household <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    position_level <span class="sc">+</span> absent, </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> health_insurance, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"binomial"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># summary</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(B_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = product_B ~ age + gender + household + position_level + 
+    absent, family = "binomial", data = health_insurance)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.3382  -0.5026  -0.1412   0.4718   2.6610  
+
+Coefficients:
+                  Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept)       0.459135   0.318257   1.443     0.149    
+age               0.062359   0.006525   9.557   &lt; 2e-16 ***
+genderMale       -2.294869   0.197119 -11.642   &lt; 2e-16 ***
+genderNon-binary  0.746624   1.107231   0.674     0.500    
+household        -0.987292   0.060711 -16.262   &lt; 2e-16 ***
+position_level   -0.286715   0.072781  -3.939 0.0000817 ***
+absent            0.008888   0.010418   0.853     0.394    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1812.59  on 1452  degrees of freedom
+Residual deviance:  989.22  on 1446  degrees of freedom
+AIC: 1003.2
+
+Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">summary</span>(B_model)<span class="sc">$</span>coefficients[,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept)              age       genderMale genderNon-binary 
+       1.5827043        1.0643445        0.1007746        2.1098642 
+       household   position_level           absent 
+       0.3725844        0.7507259        1.0089276 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>C_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> product_C <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> household <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    position_level <span class="sc">+</span> absent, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> health_insurance, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">"binomial"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summary</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(C_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = product_C ~ age + gender + household + position_level + 
+    absent, family = "binomial", data = health_insurance)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.1755  -0.6413  -0.2498   0.5673   2.5783  
+
+Coefficients:
+                    Estimate  Std. Error z value Pr(&gt;|z|)    
+(Intercept)      -7.93481599  0.45366891 -17.490  &lt; 2e-16 ***
+age               0.11226048  0.00680073  16.507  &lt; 2e-16 ***
+genderMale        1.11641253  0.15610586   7.152 8.57e-13 ***
+genderNon-binary -0.19990911  1.58470291  -0.126    0.900    
+household         0.58450808  0.04039208  14.471  &lt; 2e-16 ***
+position_level   -0.03776099  0.06493862  -0.581    0.561    
+absent           -0.00005825  0.00954273  -0.006    0.995    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1869.4  on 1452  degrees of freedom
+Residual deviance: 1179.3  on 1446  degrees of freedom
+AIC: 1193.3
+
+Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">summary</span>(C_model)<span class="sc">$</span>coefficients[,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     (Intercept)              age       genderMale genderNon-binary 
+    0.0003580579     1.1188042519     3.0538788369     0.8188051735 
+       household   position_level           absent 
+    1.7941082143     0.9629430626     0.9999417505 </code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Carefully write down your interpretation of the odds ratios from the previous question.</li>
+</ol>
+<p><em>The relative odds of B increase by 6.4% for each additional year of age. The relative odds of B decrease by almost 90% for males. The relative odds of B increase by 110% for Non-binary subjects. The relative odds of B decrease by 63% for each member of a household. The relative odds of B decrease by 25% for each position level and the relative odds of B increase by just under one percent for each day absent.</em></p>
+<p><em>The relative odds of C increase by 11.8% for each additional year of age. The relative odds of C increase by over 200% for males. The relative odds of C decrease by 19% for Non-binary subjects. The relative odds of C increase by 79% for each member of a household. The relative odds of C decrease by 4% for each position level and the relative odds of C decrease by 0.006 percent for each day absent.</em></p>
+<ol start="3" type="1">
+<li>Run a multinomial logistic regression model on the product outcome using Product B as reference. Calculate the coefficients, ratios and p-values in each case.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>health_insurance<span class="sc">$</span>product <span class="ot">&lt;-</span> <span class="fu">relevel</span>(<span class="fu">as.factor</span>(health_insurance<span class="sc">$</span>product), <span class="at">ref=</span><span class="st">"B"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mod.MNL <span class="ot">&lt;-</span> nnet<span class="sc">::</span><span class="fu">multinom</span>(product <span class="sc">~</span> age<span class="sc">+</span>household<span class="sc">+</span>position_level<span class="sc">+</span>gender<span class="sc">+</span>absent, <span class="at">data=</span>health_insurance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># weights:  24 (14 variable)
+initial  value 1596.283655 
+iter  10 value 980.134002
+iter  20 value 744.965846
+final  value 744.682378 
+converged</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod.MNL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+nnet::multinom(formula = product ~ age + household + position_level + 
+    gender + absent, data = health_insurance)
+
+Coefficients:
+  (Intercept)         age household position_level genderMale genderNon-binary
+A    4.601226 -0.24367214 0.9677148      0.4153550   2.382584       -0.2532295
+C   -5.625154  0.02614886 1.1720732      0.2017425   2.479328       -1.5239331
+        absent
+A -0.011678127
+C -0.008413771
+
+Std. Errors:
+  (Intercept)         age  household position_level genderMale genderNon-binary
+A   0.5105615 0.015431776 0.06943100     0.08916873  0.2324285         1.226256
+C   0.5116098 0.008644891 0.07117376     0.08482208  0.2253558         2.000928
+      absent
+A 0.01298151
+C 0.01213475
+
+Residual Deviance: 1489.365 
+AIC: 1517.365 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate z-statistics of coefficients</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>z_stats <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod.MNL)<span class="sc">$</span>coefficients<span class="sc">/</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(mod.MNL)<span class="sc">$</span>standard.errors</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>z_stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  (Intercept)        age household position_level genderMale genderNon-binary
+A    9.012089 -15.790285  13.93779        4.65808   10.25082       -0.2065062
+C  -10.995007   3.024776  16.46777        2.37842   11.00184       -0.7616133
+      absent
+A -0.8995969
+C -0.6933616</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to p-values</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>p_values <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stats)))<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># display p-values in transposed data frame</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">t</span>(p_values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                              A           C
+(Intercept)      0.000000000000 0.000000000
+age              0.000000000000 0.002488176
+household        0.000000000000 0.000000000
+position_level   0.000003191726 0.017387008
+genderMale       0.000000000000 0.000000000
+genderNon-binary 0.836395524437 0.446290854
+absent           0.368334803234 0.488082628</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>odds_ratios <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">summary</span>(mod.MNL)<span class="sc">$</span>coefficients)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">t</span>(odds_ratios))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          A            C
+(Intercept)      99.6063487  0.003606009
+age               0.7837446  1.026493737
+household         2.6319231  3.228679260
+position_level    1.5149085  1.223532956
+genderMale       10.8328575 11.933240577
+genderNon-binary  0.7762897  0.217853354
+absent            0.9883898  0.991621526</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Verify that the coefficients for Product C against reference Product B matches those calculated in Section 6.3.3.</li>
+</ol>
+<p><em>They do.</em></p>
+<ol start="5" type="1">
+<li>Carefully write down your interpretation of the odds ratios calculated in the previous question.</li>
+</ol>
+<p><em>For each unit of age, the relative odds of A decrease by 22% and the relative odds of C increase by 2.6%. For each member of the household, the relative odds of A increase by 163% and the relative odds of C increase by 223%. For each unit of position level, the relative odds of A increase by 51.5% and increase for C by 22.4%. Males have relative odds 983% higher for A and 1093% higher for C. Non-binary has 22.4% lower relative odds for A and 78.2% lower relative odds for C. Each day of absence decreases relative odds of A by 1.2% and C by .84%.</em></p>
+<ol start="6" type="1">
+<li>Use the process described in Section 6.4.1 to simplify the multinomial model in Question 3.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mod.MNL <span class="ot">&lt;-</span> nnet<span class="sc">::</span><span class="fu">multinom</span>(product <span class="sc">~</span> age<span class="sc">+</span>household<span class="sc">+</span>position_level<span class="sc">+</span>gender, <span class="at">data=</span>health_insurance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># weights:  21 (12 variable)
+initial  value 1596.283655 
+iter  10 value 873.188793
+iter  20 value 745.137511
+final  value 745.124043 
+converged</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod.MNL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+nnet::multinom(formula = product ~ age + household + position_level + 
+    gender, data = health_insurance)
+
+Coefficients:
+  (Intercept)         age household position_level genderMale genderNon-binary
+A    4.500997 -0.24338609 0.9641998      0.3911706   2.377054       -0.1716652
+C   -5.691713  0.02637775 1.1692938      0.1820893   2.475113       -1.4676958
+
+Std. Errors:
+  (Intercept)         age  household position_level genderMale genderNon-binary
+A   0.4976653 0.015428446 0.06916521     0.08507585  0.2323558         1.221831
+C   0.5022372 0.008632684 0.07095526     0.07976710  0.2252566         1.993456
+
+Residual Deviance: 1490.248 
+AIC: 1514.248 </code></pre>
+</div>
+</div>
+<p><em>Dropping <code>absent</code> is justified following this procedure as the text demonstrates. Next would be position level or gender and neither are justified.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Robert W. Walker">
+<meta name="dcterms.date" content="2022-09-28">
+
+<title>Solutions for HRMPA - Chapter 7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="Solutions for HRMPA - Chapter 7">
+<meta name="twitter:description" content="Load the managers data set via the peopleanalyticsdata package or download it from the internet.">
+<meta name="twitter:creator" content="@PieRatio">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Solutions for HRMPA</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/robertwwalker/HRMPA"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/PieRatio"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Chapter 7</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">news</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Robert W. Walker </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 28, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="data-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="data-exercises">7.4.2 Data exercises</h2>
+<p>Load the managers data set via the <code>peopleanalyticsdata</code> package or download it from the internet. It is a set of information of 571 managers in a sales organization and consists of the following fields:</p>
+<ul>
+<li><code>employee_id</code> for each manager</li>
+<li><code>performance_group</code> of each manager in a recent performance review: Bottom performer, Middle performer, Top performer</li>
+<li><code>yrs_employed</code>: total length of time employed in years</li>
+<li><code>manager_hire</code>: whether or not the individual was hired directly to be a manager (Y) or promoted to manager (N)</li>
+<li><code>test_score</code>: score on a test given to all managers</li>
+<li><code>group_size</code>: the number of employees in the group they are responsible for</li>
+<li><code>concern_flag</code>: whether or not the individual has been the subject of a complaint by a member of their group</li>
+<li><code>mobile_flag</code>: whether or not the individual works mobile (Y) or in the office (N)</li>
+<li><code>customers</code>: the number of customer accounts the manager is responsible for</li>
+<li><code>high_hours_flag</code>: whether or not the manager has entered unusually high hours into their timesheet in the past year</li>
+<li><code>transfers</code>: the number of transfer requests coming from the manager’s group while they have been a manager</li>
+<li><code>reduced_schedule</code>: whether the manager works part time (Y) or full time (N)</li>
+<li><code>city</code>: the current office of the manager.</li>
+</ul>
+<p>Construct a model to determine how the data provided may help explain the <code>performance_group</code> of a manager by following these steps:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>managers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://peopleanalytics-regression-book.org/data/managers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>Convert the outcome variable to an ordered factor of increasing performance.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>managers<span class="sc">$</span>performance_group <span class="ot">&lt;-</span> <span class="fu">ordered</span>(managers<span class="sc">$</span>performance_group, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bottom"</span>, <span class="st">"Middle"</span>, <span class="st">"Top"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Convert input variables to categorical factors as appropriate.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(managers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> employee_id        performance_group  yrs_employed   manager_hire      
+ Length:571         Bottom:129        Min.   :2.000   Length:571        
+ Class :character   Middle:376        1st Qu.:4.300   Class :character  
+ Mode  :character   Top   : 66        Median :4.600   Mode  :character  
+                                      Mean   :4.596                     
+                                      3rd Qu.:5.000                     
+                                      Max.   :6.000                     
+   test_score      group_size    concern_flag       mobile_flag       
+ Min.   :  0.0   Min.   : 5.00   Length:571         Length:571        
+ 1st Qu.:182.0   1st Qu.:10.00   Class :character   Class :character  
+ Median :235.0   Median :11.00   Mode  :character   Mode  :character  
+ Mean   :240.2   Mean   :11.82                                        
+ 3rd Qu.:295.0   3rd Qu.:13.00                                        
+ Max.   :500.0   Max.   :25.00                                        
+   customers     high_hours_flag      transfers      reduced_schedule  
+ Min.   :10.00   Length:571         Min.   :0.0000   Length:571        
+ 1st Qu.:18.00   Class :character   1st Qu.:0.0000   Class :character  
+ Median :20.00   Mode  :character   Median :0.0000   Mode  :character  
+ Mean   :21.06                      Mean   :0.7968                     
+ 3rd Qu.:24.00                      3rd Qu.:2.0000                     
+ Max.   :40.00                      Max.   :5.0000                     
+     city          
+ Length:571        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   </code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Perform any exploratory data analysis that you wish to do.</li>
+</ol>
+<p><em>I’ll stick with a summary.</em></p>
+<ol start="4" type="1">
+<li>Run a proportional odds logistic regression model against all relevant input variables.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mod.ORD <span class="ot">&lt;-</span> <span class="fu">polr</span>(performance_group<span class="sc">~</span>yrs_employed<span class="sc">+</span>manager_hire<span class="sc">+</span>test_score<span class="sc">+</span>group_size<span class="sc">+</span>concern_flag<span class="sc">+</span>mobile_flag<span class="sc">+</span>customers<span class="sc">+</span>high_hours_flag<span class="sc">+</span>transfers<span class="sc">+</span>reduced_schedule<span class="sc">+</span>city, <span class="at">data=</span>managers)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod.ORD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+polr(formula = performance_group ~ yrs_employed + manager_hire + 
+    test_score + group_size + concern_flag + mobile_flag + customers + 
+    high_hours_flag + transfers + reduced_schedule + city, data = managers)
+
+Coefficients:
+                      Value Std. Error  t value
+yrs_employed      -1.200549    0.21182 -5.66767
+manager_hireY     -1.529848    0.49180 -3.11070
+test_score         0.003533    0.00118  2.99463
+group_size         0.098344    0.03499  2.81033
+concern_flagY     -0.094360    0.31017 -0.30422
+mobile_flagY      -0.105275    0.22208 -0.47403
+customers         -0.006245    0.02140 -0.29181
+high_hours_flagY   0.564096    0.20349  2.77214
+transfers         -0.239006    0.08420 -2.83851
+reduced_scheduleY  0.191819    0.35987  0.53302
+cityHouston        0.024754    0.53748  0.04605
+cityNew York       0.316408    0.35429  0.89306
+cityOrlando        0.137964    0.53700  0.25692
+citySan Francisco -0.286250    0.44627 -0.64143
+cityToronto        0.303623    0.33817  0.89784
+
+Intercepts:
+              Value   Std. Error t value
+Bottom|Middle -4.8776  1.1191    -4.3584
+Middle|Top    -1.1883  1.0947    -1.0855
+
+Residual Deviance: 901.0013 
+AIC: 935.0013 </code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Construct p-values for the coefficients and consider how to simplify the model to remove variables that do not impact the outcome.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get coefficients (it's in matrix form)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">summary</span>(mod.ORD)<span class="sc">$</span>coefficients</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p-values</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(coefficients[ ,<span class="st">"t value"</span>]), <span class="dv">0</span>, <span class="dv">1</span>))<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># bind back to coefficients</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>(coefficients <span class="ot">&lt;-</span> <span class="fu">cbind</span>(coefficients, p_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         Value  Std. Error     t value          p_value
+yrs_employed      -1.200549054 0.211823948 -5.66767388 0.00000001447491
+manager_hireY     -1.529848463 0.491802054 -3.11069962 0.00186644694687
+test_score         0.003532813 0.001179718  2.99462596 0.00274781577732
+group_size         0.098344428 0.034993894  2.81033111 0.00494905551015
+concern_flagY     -0.094360424 0.310169136 -0.30422248 0.76095839840268
+mobile_flagY      -0.105275156 0.222083505 -0.47403411 0.63547558470810
+customers         -0.006245482 0.021402706 -0.29180805 0.77043339213884
+high_hours_flagY   0.564095583 0.203487608  2.77213727 0.00556895469976
+transfers         -0.239006244 0.084201412 -2.83850637 0.00453252150893
+reduced_scheduleY  0.191819056 0.359873357  0.53301822 0.59402096782304
+cityHouston        0.024753812 0.537484942  0.04605489 0.96326649740558
+cityNew York       0.316407528 0.354294345  0.89306401 0.37182289551346
+cityOrlando        0.137964146 0.536996783  0.25691801 0.79724206568822
+citySan Francisco -0.286249831 0.446269016 -0.64142887 0.52124408026741
+cityToronto        0.303623166 0.338172321  0.89783565 0.36927317450871
+Bottom|Middle     -4.877642364 1.119127112 -4.35843463 0.00001309960345
+Middle|Top        -1.188320988 1.094688871 -1.08553309 0.27768561844106</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Calculate the odds ratios for your simplified model and write an interpretation of them.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mod.ORD.S <span class="ot">&lt;-</span> <span class="fu">polr</span>(performance_group<span class="sc">~</span>yrs_employed<span class="sc">+</span>manager_hire<span class="sc">+</span>test_score<span class="sc">+</span>group_size<span class="sc">+</span>high_hours_flag<span class="sc">+</span>transfers, <span class="at">data=</span>managers)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod.ORD.S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+polr(formula = performance_group ~ yrs_employed + manager_hire + 
+    test_score + group_size + high_hours_flag + transfers, data = managers)
+
+Coefficients:
+                    Value Std. Error t value
+yrs_employed     -1.25502   0.201131  -6.240
+manager_hireY    -1.56948   0.480757  -3.265
+test_score        0.00348   0.001162   2.995
+group_size        0.10243   0.032464   3.155
+high_hours_flagY  0.54965   0.190832   2.880
+transfers        -0.24533   0.081103  -3.025
+
+Intercepts:
+              Value   Std. Error t value
+Bottom|Middle -5.1835  0.9858    -5.2584
+Middle|Top    -1.5099  0.9549    -1.5811
+
+Residual Deviance: 904.1867 
+AIC: 920.1867 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">summary</span>(mod.ORD.S)<span class="sc">$</span>coefficients[,<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    yrs_employed    manager_hireY       test_score       group_size 
+      0.28507068       0.20815421       1.00348649       1.10786191 
+high_hours_flagY        transfers    Bottom|Middle       Middle|Top 
+      1.73264719       0.78244568       0.00560822       0.22093960 </code></pre>
+</div>
+</div>
+<ul>
+<li>For each year employed, the relative odds of a higher performance group decline by 71.5%.</li>
+<li>For manager hires, the relative odds of a higher performance group decline by 79.2%.</li>
+<li>For each point of test score, the relative odds of a higher performance rating increase by .34%.</li>
+<li>For each increment of group size, the relative odds of a higher performance rating increase by 10.8%.</li>
+<li>For those flagged with high hours, the relative odds of a higher performance rating increase by 73.3%.</li>
+<li>For each transfer request, the relative odds of a higher performance rating decrease by 21.8%.</li>
+</ul>
+<ol start="7" type="1">
+<li>Estimate the fit of the simplified model using a variety of metrics and perform tests to determine if the model is a good fit for the data.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">PseudoR2</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  mod.ORD.S, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">which =</span> <span class="fu">c</span>(<span class="st">"McFadden"</span>, <span class="st">"CoxSnell"</span>, <span class="st">"Nagelkerke"</span>, <span class="st">"AIC"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    McFadden     CoxSnell   Nagelkerke          AIC 
+  0.07999042   0.12862163   0.15663647 920.18671319 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>generalhoslem<span class="sc">::</span><span class="fu">lipsitz.test</span>(mod.ORD.S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Lipsitz goodness of fit test for ordinal response models
+
+data:  formula:  performance_group ~ yrs_employed + manager_hire + test_score + formula:      group_size + high_hours_flag + transfers
+LR statistic = 9.7813, df = 9, p-value = 0.3685</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>generalhoslem<span class="sc">::</span><span class="fu">pulkrob.chisq</span>(mod.ORD.S, <span class="fu">c</span>(<span class="st">"manager_hire"</span>,<span class="st">"high_hours_flag"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pulkstenis-Robinson chi-squared test
+
+data:  formula:  performance_group ~ yrs_employed + manager_hire + test_score + formula:      group_size + high_hours_flag + transfers
+X-squared = 21.082, df = 11, p-value = 0.03253</code></pre>
+</div>
+</div>
+<p>For the Hosmer-Lemeshow test, the null hypothesis of a good model fit is reasonable; the Pulkstenis-Robinson test offers evidence to the contrary and suggests lack of fit.</p>
+<ol start="8" type="1">
+<li>Construct new outcome variables and use a stratified binomial approach to determine if the proportional odds assumption holds for your simplified model. Are there any input variables for which you may be concerned that the assumption is violated? What would you consider doing in this case?</li>
+</ol>
+<p><em>I refuse to do this for this purpose. The proportional odds assumption is necessary for a cumulative ordered response model. An alternative model, perhaps, but there is no such thing as a cumulative ordered regression model without it.</em></p>
+<p>That said, there is actually a large literature, mostly in epidemiology involving Stephen R. Cole about something called <code>data expansion</code> as an approach to these problems. Here is what it would look like.</p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>managers<span class="sc">$</span>Not.Bottom <span class="ot">&lt;-</span> (managers<span class="sc">$</span>performance_group<span class="sc">!=</span><span class="st">"Bottom"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>managers<span class="sc">$</span>Top.Performers <span class="ot">&lt;-</span> (managers<span class="sc">$</span>performance_group<span class="sc">==</span><span class="st">"Top"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>mod.bin.NB <span class="ot">&lt;-</span> <span class="fu">glm</span>(Not.Bottom<span class="sc">~</span>yrs_employed<span class="sc">+</span>manager_hire<span class="sc">+</span>test_score<span class="sc">+</span>group_size<span class="sc">+</span>high_hours_flag<span class="sc">+</span>transfers, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>), <span class="at">data=</span>managers)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>mod.bin.TP <span class="ot">&lt;-</span> <span class="fu">glm</span>(Top.Performers<span class="sc">~</span>yrs_employed<span class="sc">+</span>manager_hire<span class="sc">+</span>test_score<span class="sc">+</span>group_size<span class="sc">+</span>high_hours_flag<span class="sc">+</span>transfers, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>), <span class="at">data=</span>managers)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(mod.bin.NB,mod.bin.TP, <span class="at">type=</span><span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Not.Bottom
+</td>
+<td>
+Top.Performers
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+yrs_employed
+</td>
+<td>
+-1.170<sup>***</sup>
+</td>
+<td>
+-1.226<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.235)
+</td>
+<td>
+(0.305)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+manager_hireY
+</td>
+<td>
+-1.679<sup>***</sup>
+</td>
+<td>
+-0.984
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.512)
+</td>
+<td>
+(0.693)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+test_score
+</td>
+<td>
+0.004<sup>**</sup>
+</td>
+<td>
+0.004<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+<td>
+(0.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+group_size
+</td>
+<td>
+0.098<sup>**</sup>
+</td>
+<td>
+0.124<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.040)
+</td>
+<td>
+(0.046)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+high_hours_flagY
+</td>
+<td>
+0.332
+</td>
+<td>
+0.888<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.226)
+</td>
+<td>
+(0.285)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+transfers
+</td>
+<td>
+-0.225<sup>**</sup>
+</td>
+<td>
+-0.338<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.093)
+</td>
+<td>
+(0.142)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+4.875<sup>***</sup>
+</td>
+<td>
+0.900
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1.125)
+</td>
+<td>
+(1.428)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+571
+</td>
+<td>
+571
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+-280.889
+</td>
+<td>
+-180.851
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+575.777
+</td>
+<td>
+375.702
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<ol start="9" type="1">
+<li>Use the Brant-Wald test to support or reject the hypothesis that the proportional odds assumption holds for your simplified model.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brant)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>brant<span class="sc">::</span><span class="fu">brant</span>(mod.ORD.S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>---------------------------------------------------- 
+Test for        X2  df  probability 
+---------------------------------------------------- 
+Omnibus         4.87    6   0.56
+yrs_employed        0.02    1   0.88
+manager_hireY       0.79    1   0.37
+test_score      0   1   0.95
+group_size      0.21    1   0.65
+high_hours_flagY    2.71    1   0.1
+transfers       0.51    1   0.47
+---------------------------------------------------- 
+
+H0: Parallel Regression Assumption holds</code></pre>
+</div>
+</div>
+<p><strong>Seems fine despite the caveats above.</strong></p>
+<ol start="10" type="1">
+<li>Write a full report on your model intended for an audience of people with limited knowledge of statistics.</li>
+</ol>
+<p><strong>TLDR: As the number of years employed increases, performance ratings decrease. Those hired to be managers are less likely to be low performers though it does not well differentiate between middle and top performers. Higher test scores are associated with better performance. Managers of larger groups get higher performers. Those working high hours are most likely to be top performers. Finally, transfers are associated with lower performance ratings of the managers that they are departing; voting with one’s feet is a thing. Number of customers, city of employment, full or part time, concern flags and in office/mobile work have no obvious impact.</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

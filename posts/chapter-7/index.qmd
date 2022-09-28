@@ -1,0 +1,128 @@
+---
+title: "Chapter 7"
+author: "Robert W. Walker"
+date: "2022-09-28"
+categories: [news]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, comment=NA, prompt=FALSE, fig.height=6, fig.width=6.5, fig.retina = 3, dev = 'svg', dev.args = list(bg = "transparent"))
+options(scipen=7)
+```
+
+## 7.4.2 Data exercises
+
+Load the managers data set via the `peopleanalyticsdata` package or download it from the internet. It is a set of information of 571 managers in a sales organization and consists of the following fields:
+
+- `employee_id` for each manager
+- `performance_group` of each manager in a recent performance review: Bottom performer, Middle performer, Top performer
+- `yrs_employed`: total length of time employed in years
+- `manager_hire`: whether or not the individual was hired directly to be a manager (Y) or promoted to manager (N)
+- `test_score`: score on a test given to all managers
+- `group_size`: the number of employees in the group they are responsible for
+- `concern_flag`: whether or not the individual has been the subject of a complaint by a member of their group
+- `mobile_flag`: whether or not the individual works mobile (Y) or in the office (N)
+- `customers`: the number of customer accounts the manager is responsible for
+- `high_hours_flag`: whether or not the manager has entered unusually high hours into their timesheet in the past year
+- `transfers`: the number of transfer requests coming from the manager’s group while they have been a manager
+- `reduced_schedule`: whether the manager works part time (Y) or full time (N)
+- `city`: the current office of the manager.
+
+Construct a model to determine how the data provided may help explain the `performance_group` of a manager by following these steps:
+
+```{r}
+managers <- read.csv("http://peopleanalytics-regression-book.org/data/managers.csv")
+```
+
+
+1. Convert the outcome variable to an ordered factor of increasing performance.
+
+```{r}
+managers$performance_group <- ordered(managers$performance_group, levels = c("Bottom", "Middle", "Top"))
+```
+
+2. Convert input variables to categorical factors as appropriate.
+
+```{r}
+summary(managers)
+```
+
+
+3. Perform any exploratory data analysis that you wish to do.
+
+*I'll stick with a summary.*
+
+4. Run a proportional odds logistic regression model against all relevant input variables.
+
+```{r}
+library(MASS)
+mod.ORD <- polr(performance_group~yrs_employed+manager_hire+test_score+group_size+concern_flag+mobile_flag+customers+high_hours_flag+transfers+reduced_schedule+city, data=managers)
+summary(mod.ORD)
+```
+
+5. Construct p-values for the coefficients and consider how to simplify the model to remove variables that do not impact the outcome.
+
+```{r}
+# get coefficients (it's in matrix form)
+coefficients <- summary(mod.ORD)$coefficients
+# calculate p-values
+p_value <- (1 - pnorm(abs(coefficients[ ,"t value"]), 0, 1))*2
+# bind back to coefficients
+(coefficients <- cbind(coefficients, p_value))
+```
+
+6. Calculate the odds ratios for your simplified model and write an interpretation of them.
+
+```{r}
+mod.ORD.S <- polr(performance_group~yrs_employed+manager_hire+test_score+group_size+high_hours_flag+transfers, data=managers)
+summary(mod.ORD.S)
+exp(summary(mod.ORD.S)$coefficients[,1])
+```
+- For each year employed, the relative odds of a higher performance group decline by 71.5%.
+- For manager hires, the relative odds of a higher performance group decline by 79.2%.
+- For each point of test score, the relative odds of a higher performance rating increase by .34%.
+- For each increment of group size, the relative odds of a higher performance rating increase by 10.8%.
+- For those flagged with high hours, the relative odds of a higher performance rating increase by 73.3%.
+- For each transfer request, the relative odds of a higher performance rating decrease by 21.8%.
+
+7. Estimate the fit of the simplified model using a variety of metrics and perform tests to determine if the model is a good fit for the data.
+
+```{r}
+DescTools::PseudoR2(
+  mod.ORD.S, 
+  which = c("McFadden", "CoxSnell", "Nagelkerke", "AIC")
+)
+generalhoslem::lipsitz.test(mod.ORD.S)
+generalhoslem::pulkrob.chisq(mod.ORD.S, c("manager_hire","high_hours_flag"))
+```
+
+For the Hosmer-Lemeshow test, the null hypothesis of a good model fit is reasonable; the Pulkstenis-Robinson test offers evidence to the contrary and suggests lack of fit.
+
+8. Construct new outcome variables and use a stratified binomial approach to determine if the proportional odds assumption holds for your simplified model. Are there any input variables for which you may be concerned that the assumption is violated? What would you consider doing in this case?
+
+*I refuse to do this for this purpose.  The proportional odds assumption is necessary for a cumulative ordered response model.  An alternative model, perhaps, but there is no such thing as a cumulative ordered regression model without it.*
+
+That said, there is actually a large literature, mostly in epidemiology involving Stephen R. Cole about something called `data expansion` as an approach to these problems.  Here is what it would look like.
+
+```{r, results="asis"}
+managers$Not.Bottom <- (managers$performance_group!="Bottom")
+managers$Top.Performers <- (managers$performance_group=="Top")
+mod.bin.NB <- glm(Not.Bottom~yrs_employed+manager_hire+test_score+group_size+high_hours_flag+transfers, family=binomial(link="logit"), data=managers)
+mod.bin.TP <- glm(Top.Performers~yrs_employed+manager_hire+test_score+group_size+high_hours_flag+transfers, family=binomial(link="logit"), data=managers)
+library(stargazer)
+stargazer(mod.bin.NB,mod.bin.TP, type="html")
+```
+
+
+9. Use the Brant-Wald test to support or reject the hypothesis that the proportional odds assumption holds for your simplified model.
+
+```{r}
+library(brant)
+brant::brant(mod.ORD.S)
+```
+**Seems fine despite the caveats above.**
+
+10. Write a full report on your model intended for an audience of people with limited knowledge of statistics.
+
+**TLDR: As the number of years employed increases, performance ratings decrease.  Those hired to be managers are less likely to be low performers though it does not well differentiate between middle and top performers.  Higher test scores are associated with better performance.  Managers of larger groups get higher performers.  Those working high hours are most likely to be top performers.  Finally, transfers are associated with lower performance ratings of the managers that they are departing; voting with one's feet is a thing.  Number of customers, city of employment, full or part time, concern flags and in office/mobile work have no obvious impact.**

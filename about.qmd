@@ -12,14 +12,12 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com/robertwwalker/ChoiceAndForecasting
+      href: https://github.com/robertwwalker/HRMPA
 ---
 
-## Solutions Sets
+## Solutions to Chapter Exercises in HRMPA
 
-The first half of the [Choice and Forecasting](https://rww.quarto.pub/models-of-choice-and-forecasting/) is built around [The Handbook of Regression Modeling in People Analytics: With Examples in R, Python, and Julia](https://peopleanalytics-regression-book.org/index.html) by Keith McNulty [Global Director of Talent Sciences at McKinsey and Company] that covers models for discrete data types [binary, ordered, nominal choices, counts of events, and survival/duration analysis].  
-
-This website provides chapter-by-chapter solutions to the text exercises.
+The first half of the course is built around [The Handbook of Regression Modeling in People Analytics: With Examples in R, Python, and Julia](https://peopleanalytics-regression-book.org/index.html) by Keith McNulty [Global Director of Talent Sciences at McKinsey and Company] that covers models for discrete data types [binary, ordered, nominal choices, counts of events, and survival/duration analysis].  This website provides my solution sets for the chapter exercises in the text.
 
 ## Instructor
 

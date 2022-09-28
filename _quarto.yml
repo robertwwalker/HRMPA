@@ -1,19 +1,21 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "HRMPA"
+  title: "Solutions for HRMPA"
+  twitter-card: 
+    creator: "@PieRatio"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
+    right:
       - about.qmd
-
+      - icon: github
+        href: https://github.com/robertwwalker/HRMPA
+      - icon: twitter
+        href: https://twitter.com/PieRatio
 format:
   html:
-    theme: cosmo
+    theme: solar
     css: styles.css
-    toc: true
-
 
 
