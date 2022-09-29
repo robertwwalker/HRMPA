@@ -6,13 +6,17 @@ website:
   title: "Solutions for HRMPA"
   twitter-card: 
     creator: "@PieRatio"
+  sidebar:
+    contents: auto
   navbar:
     right:
+      - index.qmd
       - about.qmd
       - icon: github
         href: https://github.com/robertwwalker/HRMPA
       - icon: twitter
         href: https://twitter.com/PieRatio
+
 format:
   html:
     theme: solar

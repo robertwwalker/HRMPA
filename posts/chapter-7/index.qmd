@@ -2,7 +2,7 @@
 title: "Chapter 7"
 author: "Robert W. Walker"
 date: "2022-09-28"
-categories: [news]
+categories: [R]
 ---
 
 

@@ -1,8 +1,10 @@
 ---
 title: "HRMPA Solutions"
 author: "Robert W. Walker"
-date: "2022-09-28"
+date: "2022-09-20"
 categories: [news]
 ---
 
 The solutions are organized by Chapter as posts.
+
+You can find any of the original quarto markdown files on the [github repository under posts](https://github.com/robertwwalker/HRMPA).

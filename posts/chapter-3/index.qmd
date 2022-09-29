@@ -1,8 +1,8 @@
 ---
-title: "Chapter 3: HRMPA"
+title: "Chapter 3"
 author: "Robert W. Walker"
-date: "2022-09-28"
-categories: [news]
+date: "2022-09-23"
+categories: [R]
 ---
 
 ```{r setup, include=FALSE}

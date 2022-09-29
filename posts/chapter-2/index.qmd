@@ -1,8 +1,8 @@
 ---
-title: "Chapter 2: HRMPA"
+title: "Chapter 2"
 author: "RWW"
-date: "2022-09-28"
-categories: [news]
+date: "2022-09-22"
+categories: [R]
 ---
 
 ```{r setup, include=FALSE}

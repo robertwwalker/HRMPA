@@ -1,8 +1,8 @@
 ---
 title: "Chapter 6"
 author: "Robert W. Walker"
-date: "2022-09-28"
-categories: [news]
+date: "2022-09-26"
+categories: [R]
 ---
 
 
@@ -87,4 +87,5 @@ data.frame(t(odds_ratios))
 mod.MNL <- nnet::multinom(product ~ age+household+position_level+gender, data=health_insurance)
 summary(mod.MNL)
 ```
+
 *Dropping `absent` is justified following this procedure as the text demonstrates.  Next would be position level or gender and neither are justified.*

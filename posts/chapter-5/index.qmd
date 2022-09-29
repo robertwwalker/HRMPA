@@ -1,8 +1,8 @@
 ---
 title: "Chapter 5"
 author: "Robert W. Walker"
-date: "2022-09-28"
-categories: [news]
+date: "2022-09-25"
+categories: [R]
 ---
 
 
