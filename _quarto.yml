@@ -19,7 +19,7 @@ website:
 
 format:
   html:
-    theme: solar
+    theme: sketchy
     css: styles.css
 
 
