@@ -1,0 +1,198 @@
+---
+title: "Chapter 8"
+author: "Robert W. Walker"
+date: "2022-10-01"
+categories: [R]
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, comment=NA, prompt=FALSE, fig.height=6, fig.width=6.5, fig.retina = 3, dev = 'svg', dev.args = list(bg = "white"))
+options(scipen=7)
+```
+
+8.3.2 Data exercises
+
+For Exercises 1–4, use the speed_dating set used earlier in this chapter.
+
+```{r}
+speed_dating <- read.csv("http://peopleanalytics-regression-book.org/data/speed_dating.csv")
+employee_survey <- read.csv("http://peopleanalytics-regression-book.org/data/employee_survey.csv")
+```
+
+The codebook for the data can be found [here](http://www.stat.columbia.edu/~gelman/arm/examples/speed.dating/Speed%20Dating%20Data%20Key.doc).
+
+1. Split the data into two sets according to the `gender` of the participant. Run standard binomial logistic regression models on each set to determine the relationship between the `dec` decision outcome and the input variables `samerace, agediff, attr, intel and prob`.
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(skimr)
+library(kableExtra)
+names(speed_dating)
+# 1 is male, 0 is female
+SDM <- speed_dating %>% filter(gender==1)
+SDF <- speed_dating %>% filter(gender==0)
+speed_dating %>% group_by(gender) %>% skim(dec, samerace, agediff, attr, intel, prob) %>% kable() %>% scroll_box()
+```
+
+### Model Estimates for the Two Groups
+
+```{r, message=FALSE, warning=FALSE, results='asis'}
+Model.F <- glm(dec~samerace+agediff+attr+intel+prob, data=SDF, family=binomial(link="logit"))
+Model.M <- glm(dec~samerace+agediff+attr+intel+prob, data=SDM, family=binomial(link="logit"))
+library(stargazer)
+stargazer(Model.F, Model.M, type = "html", column.labels = c("Female","Male"))
+```
+
+- `samerace` has no clear relationship to the decision for females but leads to less likelihood for wishing to see the person again for males.
+- `agediff` is not clearly related to the decision for either males or females.
+- `attr` *attraction* is positively related to the decision though the effect is stronger for males than females.  *I will say more about this below.*
+- `intel` *intelligence* is positively related to `yes` for females but negatively related to `yes` for males.
+- `prob` *the probability that the other person will say yes on a 1 to 10 scale* is positively related to `yes` for both males and females.
+
+Personally, it makes more sense to me to estimate this as a common but stratified model because it allows me to identify where things differ.  There are two ways to assess that.  I will use `anova` and a formal model $\chi^2$ but we could also just use the p-values for the interaction terms.  Let's have a look at the result for the combined model and then confirm it with individual `anova` results.
+
+```{r}
+Model.All <- glm(dec~gender*samerace+gender*agediff+gender*attr+gender*intel+gender*prob, data=speed_dating, family=binomial(link="logit"))
+summary(Model.All)
+```
+
+This evidence suggests that attraction, intelligence, and the probability of a yes from the partner all differ in their effects on males and females.  Partners of the same race and the age difference do not differ among males and females.  To confirm this, let's look at the the `anova` results.  They tell us the same thing though the p-values differ slightly.
+
+```{r}
+MA1 <- glm(dec~samerace+gender*agediff+gender*attr+gender*intel+gender*prob, data=speed_dating, family=binomial(link="logit"))
+anova(MA1, Model.All, test="Chisq")
+MA2 <- glm(dec~gender*samerace+agediff+gender*attr+gender*intel+gender*prob, data=speed_dating, family=binomial(link="logit"))
+anova(MA2, Model.All, test="Chisq")
+MA3 <- glm(dec~gender*samerace+gender*agediff+attr+gender*intel+gender*prob, data=speed_dating, family=binomial(link="logit"))
+anova(MA3, Model.All, test="Chisq")
+MA4 <- glm(dec~gender*samerace+gender*agediff+gender*attr+intel+gender*prob, data=speed_dating, family=binomial(link="logit"))
+anova(MA4, Model.All, test="Chisq")
+MA5 <- glm(dec~gender*samerace+gender*agediff+gender*attr+gender*intel+prob, data=speed_dating, family=binomial(link="logit"))
+anova(MA5, Model.All, test="Chisq")
+```
+
+
+2. Run similar mixed models on these sets with a random intercept for iid.
+
+```{r}
+library(lme4)
+Model.F.Mixed <- glmer(dec~samerace+agediff+attr+intel+prob + (1 | iid), data=SDF, family=binomial(link="logit"))
+Model.M.Mixed <- glmer(dec~samerace+agediff+attr+intel+prob + (1 | iid), data=SDM, family=binomial(link="logit"))
+summary(Model.F.Mixed)
+summary(Model.M.Mixed)
+```
+
+The saturated model.
+
+```{r}
+Model.All.Mixed <- glmer(dec~gender*samerace+gender*agediff+gender*attr+gender*intel+gender*prob + (1 | iid), data=speed_dating, family=binomial(link="logit"), control= glmerControl(optimizer = "bobyqa"), nAGQ=20)
+summary(Model.All.Mixed)
+```
+
+
+3. What different conclusions can you make in comparing the mixed models with the standard models?
+
+*The model comparisons should not differ in ways that depend on using the saturated or the separate models.  First, there is evidence of random effects by ID.  Comparing the AIC values, the mixed effects models fit better in both cases.  Second, in the mixed model, females seem to prefer `samerace` partners [the result is positive and different from zero]; males do not.  Without mixed effects, `samerace` was negative for males but has no effect with mixed effects.  `agediff` is marginally different from zero and negative for both groups.  Attraction is positive for both groups though more important for males.  Intelligence is positive for both groups though stronger for females.  The probability the partner will say yes is positively related and similar for both groups. Let's show them side by side.*
+
+```{r, results='asis'}
+stargazer(Model.M, Model.M.Mixed, Model.F, Model.F.Mixed, column.labels = c("Male", "Male:RE", "Female", "Female.RE"), type="html")
+```
+
+
+4. Experiment with some random slope effects to see if they reveal anything new about the input variables.
+
+*I will examine attraction*.
+
+### Female
+
+```{r}
+Model.F.Mixed <- glmer(dec~samerace+agediff+attr+intel+prob + (1 + attr | iid), data=SDF, family=binomial(link="logit"))
+summary(Model.F.Mixed)
+```
+
+As it stands, the model for Female does not converge.  Notice the warning/convergence status.  I will let the optimizer evaluate the function up to 100,000 times; this will usually be sufficient unless the model is poorly behaved.  This was also required for the fully saturated set of interactions with gender though I used more evaluation points for numerical integration in that case because we only had one set of random effects.
+
+```{r}
+Model.F.Mixed <- glmer(dec~samerace+agediff+attr+intel+prob + (1 + attr | iid), data=SDF, family=binomial(link="logit"), control=glmerControl(optimizer="bobyqa", optCtrl=list(maxfun=100000)))
+summary(Model.F.Mixed)
+```
+
+### Males
+
+The same will happen with the Male model.  I will go ahead and increase the set of function evaluations to allow convergence.
+
+```{r}
+Model.M.Mixed <- glmer(dec~samerace+agediff+attr+intel+prob + (1 + attr | iid), data=SDM, family=binomial(link="logit"), control=glmerControl(optimizer="bobyqa", optCtrl=list(maxfun=100000)))
+summary(Model.M.Mixed)
+```
+
+For exercises 5–10, load the employee_survey data set via the `peopleanalyticsdata` package or download it from the internet. This data set contains the results of an engagement survey of employees of a technology company. Each row represents the responses of an individual to the survey and each column represents a specific survey question, with responses on a Likert scale of 1 to 4, with 1 indicating strongly negative sentiment and 4 indicating strongly positive sentiment. Subject matter experts have grouped the items into hypothesized latent factors as follows:
+
+Happiness is an overall measure of the employees current sentiment about their job.
+
+- Items beginning with `Ben` relate to employment benefits.
+- Items beginning with `Work` relate to the general work environment.
+- Items beginning with `Man` relate to perceptions of management.
+- Items beginning with `Car` relate to perceptions of career prospects.
+
+5. Write out the proposed measurement model, defining the latent factors in terms of the measured items.
+
+$$(Ben1, Ben2, Ben3) = \alpha + \beta_{k}\textrm{Benefits} + \epsilon$$
+$$(Man1, Man2, Man3) = \alpha + \beta_{k}\textrm{Managers} + \epsilon$$
+$$(Work1, Work2, Work3) = \alpha + \beta_{k}\textrm{Workplace} + \epsilon$$
+$$(Car1, Car2, Car3, Car4) = \alpha + \beta_{k}\textrm{Career} + \epsilon$$
+
+6. Run a confirmatory factor analysis on the proposed measurement model. Examine the fit and the factor loadings.
+
+```{r}
+meas_mod <- "
+Benefits =~ Ben1 + Ben2 + Ben3
+Career =~ Car1 + Car2 + Car3 + Car4
+Manager =~ Man1 + Man2 + Man3
+Workplace =~ Work1 + Work2 + Work3
+"
+library(lavaan)
+cfa_meas_mod <- lavaan::cfa(model = meas_mod, data = employee_survey, ordered = TRUE)
+lavaan::summary(cfa_meas_mod, fit.measures = TRUE, standardized = TRUE)
+```
+
+
+7. Experiment with the removal of measured items from the measurement model in order to improve the overall fit.
+
+```{r}
+meas_mod.2 <- "
+Benefits =~ Ben1 + Ben2
+Career =~ Car1 + Car2 + Car3 + Car4
+Manager =~ Man1 + Man2 + Man3
+Workplace =~ Work1 + Work2 + Work3
+"
+library(lavaan)
+cfa_meas_mod.2 <- lavaan::cfa(model = meas_mod.2, data = employee_survey, ordered=TRUE)
+lavaan::summary(cfa_meas_mod.2, fit.measures = TRUE, standardized = TRUE)
+```
+
+
+8. Once satisfied with the fit of the measurement model, run a full structural equation model on the data.
+
+```{r}
+struc_mod <- "
+Benefits =~ Ben1 + Ben2
+Career =~ Car1 + Car2 + Car3 + Car4
+Manager =~ Man1 + Man2 + Man3
+Workplace =~ Work1 + Work2 + Work3
+Happiness ~ Benefits + Career + Manager + Workplace
+"
+library(lavaan)
+library(performance)
+sem_model <- lavaan::sem(model = struc_mod, data = employee_survey, ordered=TRUE)
+lavaan::summary(sem_model, fit.measures = TRUE, standardized = TRUE, rsquare=TRUE)
+```
+
+
+9. Interpret the results of the structural model. Which factors appear most related to overall employee sentiment? Approximately what proportion of the variance in overall sentiment does the model explain?
+
+One can get an approximate $R^2$ value from the summary; in this case, it is approximately 0.56.
+
+
+10. If you dropped measured items from your measurement model, experiment with assigning them to other factors to see if this improves the fit of the model. What statistics would you use to compare different measurement models?
